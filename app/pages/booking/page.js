@@ -4,6 +4,7 @@ import { useState } from "react";
 import axios from "axios";
 import { Header } from "../../components/header";
 import { Footer } from "../../components/footer";
+import Image from "next/image";
 
 export default function Booking() {
   const [formData, setFormData] = useState({
@@ -41,87 +42,106 @@ export default function Booking() {
     <main>
       <Header />
       <section>
-        <div className="flex items-center justify-center min-h-screen">
-          <form
-            onSubmit={handleSubmit}
-            className="bg-gray-950 p-8 rounded-lg shadow-md w-full max-w-md"
-          >
-            <h2 className="text-2xl font-bold mb-6 text-center">
+        <div className="relative h-[50vh] mb-20">
+          <div className="-z-10">
+            <Image
+              priority
+              src={"/hero.webp"}
+              layout="fill"
+              objectFit="cover"
+              objectPosition="center"
+              alt="Hero image"
+            />
+          </div>
+          <div className="relative h-full flex flex-col items-center justify-center">
+            <h1 className="mt-20 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
               Book en reservation
-            </h2>
-            <div className="mb-4">
-              <label className="block">Navn</label>
-              <input
-                type="text"
-                name="name"
-                placeholder="Navn"
-                value={formData.name}
-                onChange={handleChange}
-                className="w-full p-2 border border-gray-300 text-gray-950 rounded mt-1"
-                required
-              />
-            </div>
-            <div className="mb-4">
-              <label className="block">E-mail</label>
-              <input
-                type="email"
-                name="email"
-                placeholder="E-mail"
-                value={formData.email}
-                onChange={handleChange}
-                className="w-full p-2 border border-gray-300 text-gray-950 rounded mt-1"
-                required
-              />
-            </div>
-            <div className="mb-4">
-              <label className="block">Telefonnummer</label>
-              <input
-                type="text"
-                name="phone"
-                placeholder="Telefonnummer"
-                value={formData.phone}
-                onChange={handleChange}
-                className="w-full p-2 border border-gray-300 text-gray-950 rounded mt-1"
-                required
-              />
-            </div>
-            <div className="mb-4">
-              <label className="block">Antal gæster</label>
-              <input
-                type="number"
-                name="guests"
-                value={formData.guests}
-                onChange={handleChange}
-                className="w-full p-2 border border-gray-300 text-gray-950 rounded mt-1"
-                required
-              />
-            </div>
-            <div className="mb-4">
-              <label className="block">Dato for reservation</label>
-              <input
-                type="date"
-                name="reservationDate"
-                value={formData.reservationDate}
-                onChange={handleChange}
-                className="w-full p-2 border border-gray-300 text-gray-950 rounded mt-1"
-                required
-              />
-            </div>
-            <div className="mb-4">
-              <label className="block">Tidspunkt for reservation</label>
-              <input
-                type="time"
-                name="reservationTime"
-                value={formData.reservationTime}
-                onChange={handleChange}
-                className="w-full p-2 border border-gray-300 text-gray-950 rounded mt-1"
-                required
-              />
-            </div>
-            <button className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600">
-              Indsend reservation
-            </button>
-          </form>
+            </h1>
+          </div>
+          <div className="absolute w-full bottom-0 h-1/3 bg-gradient-to-t from-background to-transparent"></div>
+        </div>
+      </section>
+      <section>
+        <div className="flex items-center justify-center">
+          <div className="flex justify-center shadow-lg lg:w-1/3">
+            <form
+              onSubmit={handleSubmit}
+              className="bg-background border border-gray-100/25 p-8 rounded-lg w-full max-w-md"
+            >
+              <div className="mb-4">
+                <label className="block">Navn</label>
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Navn"
+                  value={formData.name}
+                  onChange={handleChange}
+                  className="w-full p-2 border border-gray-300 text-gray-950 rounded mt-1"
+                  required
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block">E-mail</label>
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="E-mail"
+                  value={formData.email}
+                  onChange={handleChange}
+                  className="w-full p-2 border border-gray-300 text-gray-950 rounded mt-1"
+                  required
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block">Telefonnummer</label>
+                <input
+                  type="text"
+                  name="phone"
+                  placeholder="Telefonnummer"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  className="w-full p-2 border border-gray-300 text-gray-950 rounded mt-1"
+                  required
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block">Antal gæster</label>
+                <input
+                  type="number"
+                  name="guests"
+                  value={formData.guests}
+                  onChange={handleChange}
+                  className="w-full p-2 border border-gray-300 text-gray-950 rounded mt-1"
+                  required
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block">Dato for reservation</label>
+                <input
+                  type="date"
+                  name="reservationDate"
+                  value={formData.reservationDate}
+                  onChange={handleChange}
+                  className="w-full p-2 border border-gray-300 text-gray-950 rounded mt-1"
+                  required
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block">Tidspunkt for reservation</label>
+                <input
+                  type="time"
+                  name="reservationTime"
+                  value={formData.reservationTime}
+                  onChange={handleChange}
+                  className="w-full p-2 border border-gray-300 text-gray-950 rounded mt-1"
+                  required
+                />
+              </div>
+              <button className="w-full mt-6 bg-secondary text-white p-2 rounded transition hover:bg-secondary/70 hover:-translate-y-1">
+                Indsend reservation
+              </button>
+            </form>
+          </div>
         </div>
       </section>
       <Footer />
