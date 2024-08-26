@@ -8,6 +8,11 @@ import React, { useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+import {
+  animateImagePosition,
+  setupParallaxEffect,
+  setupFadeInEffect,
+} from "./utils/gsapUtils";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -17,61 +22,10 @@ export default function Home() {
   const imageParallaxRef = useRef(null);
 
   useGSAP(() => {
-    gsap.defaults({ ease: "none" });
-    gsap.to(imagePosRef.current, {
-      y: -32,
-      scrollTrigger: {
-        trigger: imagePosRef.current,
-        start: "top bottom",
-        end: "+=500",
-        scrub: 3,
-      },
-    });
-
-    gsap.defaults({ ease: "none" });
-    gsap.to(imageNegRef.current, {
-      y: 32,
-      scrollTrigger: {
-        trigger: imageNegRef.current,
-        start: "top bottom",
-        end: "+=500",
-        scrub: 3,
-      },
-    });
-
-    // Scroll-triggered animation for the parallax effect
-    gsap.to(imageParallaxRef.current, {
-      y: "-50%", // Adjust this value to control how much the image moves
-      ease: "none",
-      scrollTrigger: {
-        trigger: imageParallaxRef.current,
-        start: "top bottom", // Start when image hits bottom of the viewport
-        end: "bottom top", // End when the image hits the top of the viewport
-        scrub: 1, // Synchronize animation with the scroll
-      },
-    });
-
-    gsap.utils.toArray(".fade-in").forEach((element) => {
-      gsap.fromTo(
-        element,
-        {
-          opacity: 0,
-          y: 50,
-        },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 1,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: element,
-            start: "top 80%",
-            end: "bottom 20%",
-            toggleActions: "play reverse play reverse",
-          },
-        }
-      );
-    });
+    // Initialize GSAP animations
+    animateImagePosition(imagePosRef, imageNegRef);
+    setupParallaxEffect(imageParallaxRef);
+    setupFadeInEffect();
   }, []);
 
   return (
