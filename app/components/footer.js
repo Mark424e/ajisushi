@@ -11,7 +11,7 @@ export const Footer = () => {
           <div className="grid md:flex justify-center md:justify-between py-20 gap-20 text-center md:text-start">
             <div>
               <h2 className="text-4xl font-extrabold mb-6">Genveje</h2>
-              <ul className="grid md:flex gap-4 md:gap-16 text-xl">
+              <ul className="grid lg:flex gap-4 md:gap-8 text-xl">
                 <li className="nav-menu">
                   <Link href="/pages/booking">Booking</Link>
                 </li>
