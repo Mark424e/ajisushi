@@ -12,39 +12,62 @@ import { useGSAP } from "@gsap/react";
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 export default function Home() {
-  const imageRef = useRef(null); // Reference to the .box element
+  const imagePosRef = useRef(null);
+  const imageNegRef = useRef(null);
+  const imageParallaxRef = useRef(null);
 
   useGSAP(() => {
     gsap.defaults({ ease: "none" });
-    // Trigger the GSAP animation to spin the box in place
-    gsap.to(imageRef.current, {
-      y: -125, // Rotate 360 degrees
+    gsap.to(imagePosRef.current, {
+      y: -32,
       scrollTrigger: {
-        trigger: imageRef.current, // The element that triggers the animation
-        start: "top bottom", // Animation starts when .box is at the bottom of the viewport
-        end: "+=500", // Animation ends when .box is at the top of the viewport
-        scrub: 3, // Smoothly animate the rotation as the user scrolls
+        trigger: imagePosRef.current,
+        start: "top bottom",
+        end: "+=500",
+        scrub: 3,
       },
     });
 
-    // Animate all elements with the .fade-in class
+    gsap.defaults({ ease: "none" });
+    gsap.to(imageNegRef.current, {
+      y: 32,
+      scrollTrigger: {
+        trigger: imageNegRef.current,
+        start: "top bottom",
+        end: "+=500",
+        scrub: 3,
+      },
+    });
+
+    // Scroll-triggered animation for the parallax effect
+    gsap.to(imageParallaxRef.current, {
+      y: "-50%", // Adjust this value to control how much the image moves
+      ease: "none",
+      scrollTrigger: {
+        trigger: imageParallaxRef.current,
+        start: "top bottom", // Start when image hits bottom of the viewport
+        end: "bottom top", // End when the image hits the top of the viewport
+        scrub: 1, // Synchronize animation with the scroll
+      },
+    });
+
     gsap.utils.toArray(".fade-in").forEach((element) => {
       gsap.fromTo(
         element,
         {
-          opacity: 0, // Start with the element hidden
-          y: 50, // Start slightly below its normal position
+          opacity: 0,
+          y: 50,
         },
         {
-          opacity: 1, // Fade in to fully visible
-          y: 0, // Move to its normal position
+          opacity: 1,
+          y: 0,
           duration: 1,
           ease: "power2.out",
           scrollTrigger: {
-            trigger: element, // Each element is its own trigger
-            start: "top 80%", // Start animation when top of element reaches 80% of viewport
-            end: "bottom 20%", // End when the element reaches 20% of viewport
-            toggleActions: "play reverse play reverse", // Resets when out of view
+            trigger: element,
+            start: "top 80%",
+            end: "bottom 20%",
+            toggleActions: "play reverse play reverse",
           },
         }
       );
@@ -75,9 +98,9 @@ export default function Home() {
         </div>
       </section>
       <section>
-        <div className="bg-background py-20">
+        <div className="bg-background py-10 md:py-20">
           <div className="container mx-auto">
-            <div className="grid md:grid-cols-2 items-center text-center md:text-start leading-7 gap-16">
+            <div className="grid md:grid-cols-2 items-center text-center md:text-start leading-7 gap-8">
               <div className="fade-in">
                 <h2 className="text-2xl font-semibold leading-none tracking-tight text-gray-900 md:text-3xl lg:text-4xl dark:text-text">
                   En unik sushioplevelse
@@ -91,18 +114,26 @@ export default function Home() {
                   der er tilberedt med de bedste råvarer.
                 </p>
               </div>
-              <div className="relative grid justify-center">
+              <div className="relative grid grid-cols-2 sm:grid-cols-3 md:grid-cols-2 lg:grid-cols-3 gap-4 justify-between items-center mt-20 md:mt-0">
                 <Image
-                  className="h-80 w-64 object-cover rounded shadow-md"
-                  src={"/ad1.webp"}
+                  ref={imagePosRef}
+                  className="translate-y-8 h-56 w-64 object-cover shadow-md"
+                  src={"/1wf.webp"}
                   width={400}
                   height={200}
                   alt="Picture of delicious sushi"
                 />
                 <Image
-                  ref={imageRef}
-                  className="absolute top-1/4 left-1/2 -translate-x-1/4 h-80 w-64 object-cover rounded shadow-md"
-                  src={"/116.webp"}
+                  className="hidden sm:block md:hidden lg:block h-56 w-64 object-cover shadow-md"
+                  src={"/3r6.webp"}
+                  width={400}
+                  height={200}
+                  alt="Picture of delicious sushi"
+                />
+                <Image
+                  ref={imageNegRef}
+                  className="-translate-y-8 h-56 w-64 object-cover shadow-md"
+                  src={"/fe3.webp"}
                   width={400}
                   height={200}
                   alt="Picture of delicious sushi"
@@ -114,19 +145,20 @@ export default function Home() {
       </section>
 
       <section>
-        <div className="bg-background py-20">
+        <div className="bg-background py-10 md:py-20">
           <div className="container mx-auto">
-            <div className="grid md:grid-cols-2 items-center text-center md:text-start leading-7 gap-16">
-              <div className="relative grid justify-center items-center object-cover">
+            <div className="grid md:grid-cols-2 items-center text-center md:text-start leading-7 gap-8">
+              <div className="relative h-80 overflow-hidden order-2 md:order-1">
                 <Image
-                  className="w-full object-cover rounded shadow-md"
-                  src={"/ad1.webp"}
-                  width={200}
+                  ref={imageParallaxRef}
+                  className="absolute top-0 left-0 w-full h-[175%] object-cover"
+                  src={"/2wf.webp"}
+                  width={400}
                   height={200}
                   alt="Picture of delicious sushi"
                 />
               </div>
-              <div className="fade-in">
+              <div className="fade-in order-1 md:order-2">
                 <h2 className="text-2xl font-semibold leading-none tracking-tight text-gray-900 md:text-3xl lg:text-4xl dark:text-text">
                   Sushi ad Libitum –
                 </h2>
