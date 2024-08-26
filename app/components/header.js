@@ -8,7 +8,7 @@ export const Header = () => {
       <div className="backdrop-blur-sm backdrop-brightness-[.25]">
         <div className="container mx-auto">
           <div className="flex justify-between items-center py-10">
-            <div>
+            <div className="transition hover:scale-105">
               <Link href="/">
                 <Image
                   className="flex"

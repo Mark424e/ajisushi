@@ -53,20 +53,21 @@ export default function Booking() {
               alt="Hero image"
             />
           </div>
+          <div className="absolute w-full bottom-0 h-full bg-gradient-to-t from-background via-background/25 to-transparent"></div>
           <div className="relative h-full flex flex-col items-center justify-center">
             <h1 className="mt-20 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
               Book en reservation
             </h1>
           </div>
-          <div className="absolute w-full bottom-0 h-1/3 bg-gradient-to-t from-background to-transparent"></div>
         </div>
       </section>
+
       <section>
         <div className="flex items-center justify-center">
-          <div className="flex justify-center shadow-lg lg:w-1/3">
+          <div className="flex justify-center shadow-lg lg:w-1/3 py-20">
             <form
               onSubmit={handleSubmit}
-              className="bg-background border border-gray-100/25 p-8 rounded-lg w-full max-w-md"
+              className="bg-background border border-gray-100/25 p-8 rounded-lg w-full max-w-md transition hover:shadow-accent hover:shadow-md hover:border-accent/25"
             >
               <div className="mb-4">
                 <label className="block">Navn</label>
@@ -76,7 +77,7 @@ export default function Booking() {
                   placeholder="Navn"
                   value={formData.name}
                   onChange={handleChange}
-                  className="w-full p-2 border border-gray-300 text-gray-950 rounded mt-1"
+                  className="w-full p-2 border border-gray-300 text-gray-950 mt-1 block px-3 py-2 bg-white rounded-md text-sm shadow-sm placeholder-slate-400 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none"
                   required
                 />
               </div>
@@ -88,7 +89,7 @@ export default function Booking() {
                   placeholder="E-mail"
                   value={formData.email}
                   onChange={handleChange}
-                  className="w-full p-2 border border-gray-300 text-gray-950 rounded mt-1"
+                  className="w-full p-2 border border-gray-300 text-gray-950 mt-1 block px-3 py-2 bg-white rounded-md text-sm shadow-sm placeholder-slate-400 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none"
                   required
                 />
               </div>
@@ -100,7 +101,7 @@ export default function Booking() {
                   placeholder="Telefonnummer"
                   value={formData.phone}
                   onChange={handleChange}
-                  className="w-full p-2 border border-gray-300 text-gray-950 rounded mt-1"
+                  className="w-full p-2 border border-gray-300 text-gray-950 mt-1 block px-3 py-2 bg-white rounded-md text-sm shadow-sm placeholder-slate-400 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none"
                   required
                 />
               </div>
@@ -111,7 +112,7 @@ export default function Booking() {
                   name="guests"
                   value={formData.guests}
                   onChange={handleChange}
-                  className="w-full p-2 border border-gray-300 text-gray-950 rounded mt-1"
+                  className="w-full p-2 border border-gray-300 text-gray-950 mt-1 block px-3 py-2 bg-white rounded-md text-sm shadow-sm placeholder-slate-400 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none"
                   required
                 />
               </div>
@@ -122,7 +123,7 @@ export default function Booking() {
                   name="reservationDate"
                   value={formData.reservationDate}
                   onChange={handleChange}
-                  className="w-full p-2 border border-gray-300 text-gray-950 rounded mt-1"
+                  className="w-full p-2 border border-gray-300 text-gray-950 mt-1 block px-3 py-2 bg-white rounded-md text-sm shadow-sm placeholder-slate-400 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none"
                   required
                 />
               </div>
@@ -133,7 +134,7 @@ export default function Booking() {
                   name="reservationTime"
                   value={formData.reservationTime}
                   onChange={handleChange}
-                  className="w-full p-2 border border-gray-300 text-gray-950 rounded mt-1"
+                  className="w-full p-2 border border-gray-300 text-gray-950 mt-1 block px-3 py-2 bg-white rounded-md text-sm shadow-sm placeholder-slate-400 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none"
                   required
                 />
               </div>

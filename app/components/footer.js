@@ -28,14 +28,16 @@ export const Footer = () => {
             </div>
             <div>
               <h2 className="text-4xl font-extrabold mb-6">Kontakt</h2>
-              <p>Algade 26, 4000 Roskilde</p>
-              <p className="nav-menu">
-                Tlf.: <a href="tel:73708800">73 70 88 00</a>
-              </p>
-              <p className="nav-menu">
-                Mail:{" "}
-                <a href="mailto:info@ajisushi4000.dk">info@ajisushi4000.dk</a>
-              </p>
+              <div className=" space-y-1">
+                <p>Algade 26, 4000 Roskilde</p>
+                <p className="nav-menu">
+                  Tlf.: <a href="tel:73708800">73 70 88 00</a>
+                </p>
+                <p className="nav-menu">
+                  Mail:{" "}
+                  <a href="mailto:info@ajisushi4000.dk">info@ajisushi4000.dk</a>
+                </p>
+              </div>
             </div>
           </div>
           <div className="pb-16">
