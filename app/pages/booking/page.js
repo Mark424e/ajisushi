@@ -1,12 +1,28 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState, useRef } from "react";
+import Image from "next/image";
 import axios from "axios";
 import { Header } from "../../components/header";
 import { Footer } from "../../components/footer";
-import Image from "next/image";
+import { Button } from "../../components/button";
+import { useGSAP } from "@gsap/react";
+import {
+  animateImagePosition,
+  setupParallaxEffect,
+  setupFadeInEffect,
+} from "../../utils/gsapUtils";
 
 export default function Booking() {
+  const imagePosRef = useRef(null);
+  const imageNegRef = useRef(null);
+  const imageParallaxRef = useRef(null);
+
+  useGSAP(() => {
+    animateImagePosition(imagePosRef, imageNegRef);
+    setupParallaxEffect(imageParallaxRef);
+    setupFadeInEffect();
+  }, []);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -61,12 +77,11 @@ export default function Booking() {
           </div>
         </div>
       </section>
-
       <section>
         <div className="bg-background py-10 md:py-10">
           <div className="container mx-auto">
-            <div className="flex flex-col md:flex-row gap-16">
-              <div className="flex-wrap md:flex-1 shadow-lg">
+            <div className="flex flex-col md:flex-row justify-center gap-8">
+              <div className="fade-in shadow-lg flex-1 lg:flex-none md:min-w-80 lg:min-w-96">
                 <form
                   onSubmit={handleSubmit}
                   className="bg-background border border-gray-100/25 p-8 rounded-lg w-full transition hover:shadow-accent hover:shadow-md hover:border-accent/25"
@@ -140,58 +155,48 @@ export default function Booking() {
                       required
                     />
                   </div>
-                  <button className="w-full mt-6 bg-secondary text-white p-2 rounded transition hover:bg-secondary/70 hover:-translate-y-1">
-                    Indsend reservation
-                  </button>
+                  <Button type="submit">Indsend reservation</Button>
                 </form>
               </div>
-              <div className="md:flex-1 shadow-lg">
-                <div className="bg-background border border-gray-100/25 p-8 rounded-lg min-h-full w-full">
-                  <h2 className="text-center md:text-start text-2xl font-semibold leading-none tracking-tight text-gray-900 md:text-3xl lg:text-4xl dark:text-text">
+              <div className="fade-in shadow-lg flex-1 lg:flex-none md:min-w-80 lg:min-w-96">
+                <div className="bg-background border border-gray-100/25 p-8 rounded-lg min-h-full w-full md:max-w-96">
+                  <h2 className="text-center md:text-start text-3xl font-semibold leading-none tracking-tight text-gray-900 dark:text-text">
                     Vores priser
                   </h2>
                   <div className="w-[60px] border border-accent my-5 mx-auto md:mx-0"></div>
                   <div className="mb-8">
-                    <p className="font-semibold">
+                    <h3 className="text-lg font-semibold mb-2">
                       Frokost: <span className="text-accent">199,-kr</span>
-                    </p>
-                    <div className="grid grid-cols-2 gap-8 justify-between">
-                      <ul className="text-start">
-                        <li>Man. - Lør.:</li>
-                        <li>Søn.:</li>
-                      </ul>
-                      <ul className="text-end">
-                        <li>11:00 - 15:00</li>
-                        <li>13:00 - 15:00</li>
-                      </ul>
+                    </h3>
+                    <div className="flex justify-between mb-1 pb-1 border-b border-gray-100/50">
+                      <p>Man. - Lør.:</p>
+                      <p>11:00 - 15.00</p>
+                    </div>
+                    <div className="flex justify-between mb-1 pb-1 border-b border-gray-100/50">
+                      <p>Søn.:</p>
+                      <p>13:00 - 15:00</p>
                     </div>
                   </div>
                   <div className="mb-8">
-                    <p className="font-semibold">
+                    <h3 className="text-lg font-semibold mb-2">
                       Aften: <span className="text-accent">239,-kr</span>
-                    </p>
-                    <div className="grid grid-cols-2 gap-8 justify-between">
-                      <ul className="text-start">
-                        <li>Man. - Tors.:</li>
-                        <li>Søn.:</li>
-                      </ul>
-                      <ul className="text-end">
-                        <li>15:00 - 21:00</li>
-                        <li>15:00 - 21:00</li>
-                      </ul>
+                    </h3>
+                    <div className="flex justify-between mb-1 pb-1 border-b border-gray-100/50">
+                      <p>Man. - Tors.:</p>
+                      <p>15:00 - 21:00</p>
+                    </div>
+                    <div className="flex justify-between mb-1 pb-1 border-b border-gray-100/50">
+                      <p>Søn.:</p>
+                      <p>15:00 - 21:00</p>
                     </div>
                   </div>
                   <div className="mb-8">
-                    <p className="font-semibold">
+                    <h3 className="text-lg font-semibold mb-2">
                       Aften: <span className="text-accent">259,-kr</span>
-                    </p>
-                    <div className="grid grid-cols-2 gap-8 justify-between">
-                      <ul className="text-start">
-                        <li>Fre. - Lør.:</li>
-                      </ul>
-                      <ul className="text-end">
-                        <li>15:00 - 21:30</li>
-                      </ul>
+                    </h3>
+                    <div className="flex justify-between mb-1 pb-1 border-b border-gray-100/50">
+                      <p>Fre. - Lør.:</p>
+                      <p>15:00 - 21:30</p>
                     </div>
                   </div>
                 </div>

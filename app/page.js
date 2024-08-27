@@ -1,20 +1,15 @@
 "use client";
 
+import React, { useRef } from "react";
+import Image from "next/image";
 import { Header } from "./components/header";
 import { Footer } from "./components/footer";
-import Image from "next/image";
-
-import React, { useRef } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import {
   animateImagePosition,
   setupParallaxEffect,
   setupFadeInEffect,
 } from "./utils/gsapUtils";
-
-gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 export default function Home() {
   const imagePosRef = useRef(null);
@@ -51,6 +46,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+
       <section>
         <div className="bg-background py-10 md:py-20">
           <div className="container mx-auto">
