@@ -1,42 +1,82 @@
-import React from "react";
+'use client';
+
+import React, { useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Clock } from "./ui/clock";
+import { Socials } from "./socials";
+import { useGSAP } from "@gsap/react";
+import {
+  setupFadeInEffect,
+} from "./../utils/gsapUtils";
 
 export const Footer = () => {
+
+  useGSAP(() => {
+    setupFadeInEffect();
+  }, []);
   return (
     <footer>
       <div className="bg-background border-t border-gray-100/25">
         <div className="container mx-auto">
-          <div className="grid md:flex justify-center md:justify-between py-20 gap-20 text-center md:text-start">
-            <div>
-              <h2 className="text-4xl font-extrabold mb-6">Genveje</h2>
-              <ul className="grid lg:flex gap-4 md:gap-8 text-xl">
-                <li className="nav-menu">
-                  <Link href="/pages/booking">Booking</Link>
-                </li>
-                <li className="nav-menu">
-                  <Link href="/pages/products">Online Bestilling</Link>
-                </li>
-                <li className="nav-menu">
-                  <Link href="/pages/contact">Kontakt</Link>
-                </li>
-                <li className="nav-menu">
-                  <Link href="/pages/about">Om Os</Link>
-                </li>
-              </ul>
+          <div className="fade-in grid lg:grid-cols-2 justify-center items-end md:justify-between py-20 gap-20 text-center md:text-start">
+            <div className="order-2 md:order-1">
+              <div className="flex md:grid flex-col items-center space-y-8">
+                <div>
+                  <Link href="/">
+                    <Image
+                      src="/logo_full.svg"
+                      width={400}
+                      height={400}
+                      alt="Logo"
+                    />
+                  </Link>
+                </div>
+                <div>
+                  <p className="text-lg text-gray-400">
+                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ab
+                    adipisci modi, fugiat nobis pariatur fuga vel vero incidunt
+                    quis dolore! Soluta nam voluptatum non laudantium odit
+                    exercitationem maxime dolor dolorum?
+                  </p>
+                </div>
+                <div>
+                  <Socials/>
+                </div>
+              </div>
             </div>
-            <div>
-              <h2 className="text-4xl font-extrabold mb-6">Kontakt</h2>
-              <div className=" space-y-1">
-                <p>Algade 26, 4000 Roskilde</p>
-                <p className="nav-menu">
-                  Tlf.: <a href="tel:73708800">73 70 88 00</a>
-                </p>
-                <p className="nav-menu">
-                  Mail:{" "}
-                  <a href="mailto:info@ajisushi4000.dk">info@ajisushi4000.dk</a>
-                </p>
+            <div className="order-1 md:order-2 grid md:grid-cols-2 gap-20 lg:gap-0">
+              <div>
+                <h2 className="text-2xl font-extrabold mb-6">Links</h2>
+                <ul className="grid gap-4 text-lg text-gray-400">
+                  <li className="nav-menu">
+                    <Link href="/pages/booking">Booking</Link>
+                  </li>
+                  <li className="nav-menu">
+                    <Link href="/pages/products">Online Bestilling</Link>
+                  </li>
+                  <li className="nav-menu">
+                    <Link href="/pages/contact">Kontakt</Link>
+                  </li>
+                  <li className="nav-menu">
+                    <Link href="/pages/about">Om Os</Link>
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h2 className="text-2xl font-extrabold mb-6">Kontakt</h2>
+                <ul className="grid gap-4 text-lg text-gray-400">
+                  <li className="nav-menu">Algade 26, 4000 Roskilde</li>
+                  <li className="nav-menu">
+                    Tlf.: <a href="tel:73708800">73 70 88 00</a>
+                  </li>
+                  <li className="nav-menu">
+                    Mail:{" "}
+                    <a href="mailto:info@ajisushi4000.dk">
+                      info@ajisushi4000.dk
+                    </a>
+                  </li>
+                </ul>
               </div>
             </div>
           </div>

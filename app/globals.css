@@ -57,3 +57,19 @@ body {
 .nav-menu a:hover::after {
   width: 100%;
 }
+
+@keyframes bounce {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.9);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.bounce {
+  animation: bounce 0.2s ease; /* Adjust timing and easing as needed */
+}

@@ -1,9 +1,20 @@
-import React from "react";
+"use client";
+
+import React, { useRef } from "react";
 import { Header } from "../../components/header";
 import { Footer } from "../../components/footer";
 import Image from "next/image";
+import { useGSAP } from "@gsap/react";
+import {
+  fadeInTextLetterByLetter,
+} from "../../utils/gsapUtils";
 
 export default function Contact() {
+  const headingRef = useRef(null);
+
+  useGSAP(() => {
+    fadeInTextLetterByLetter(headingRef.current);
+  }, []);
   return (
     <main>
       <Header />
@@ -21,7 +32,7 @@ export default function Contact() {
           </div>
           <div className="absolute w-full bottom-0 h-full bg-gradient-to-t from-background via-background/25 to-transparent"></div>
           <div className="relative h-full flex flex-col items-center justify-center">
-            <h1 className="mt-20 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
+            <h1 ref={headingRef} className="mt-20 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
               Kontakt os
             </h1>
           </div>

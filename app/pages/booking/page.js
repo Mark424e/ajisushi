@@ -11,17 +11,20 @@ import {
   animateImagePosition,
   setupParallaxEffect,
   setupFadeInEffect,
+  fadeInTextLetterByLetter,
 } from "../../utils/gsapUtils";
 
 export default function Booking() {
   const imagePosRef = useRef(null);
   const imageNegRef = useRef(null);
   const imageParallaxRef = useRef(null);
+  const headingRef = useRef(null);
 
   useGSAP(() => {
     animateImagePosition(imagePosRef, imageNegRef);
     setupParallaxEffect(imageParallaxRef);
     setupFadeInEffect();
+    fadeInTextLetterByLetter(headingRef.current);
   }, []);
   const [formData, setFormData] = useState({
     name: "",
@@ -71,7 +74,10 @@ export default function Booking() {
           </div>
           <div className="absolute w-full bottom-0 h-full bg-gradient-to-t from-background via-background/25 to-transparent"></div>
           <div className="relative h-full flex flex-col items-center justify-center">
-            <h1 className="mt-20 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
+            <h1
+              ref={headingRef}
+              className="fade-in mt-20 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white"
+            >
               Book en reservation
             </h1>
           </div>

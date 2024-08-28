@@ -1,5 +1,5 @@
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -65,4 +65,75 @@ export const setupFadeInEffect = () => {
       }
     );
   });
+};
+
+// Bounce and fade-in from the right
+export const bounceFadeInFromLeft = (element) => {
+  gsap.fromTo(
+    element,
+    {
+      x: "-15%",
+      opacity: 0,
+    },
+    {
+      x: "0%",
+      opacity: 1,
+      duration: 1.5,
+      ease: "bounce.out",
+      scrollTrigger: {
+        trigger: element,
+        start: "top 80%",
+        end: "bottom 20%",
+        toggleActions: "play none none none",
+      },
+    }
+  );
+};
+
+/**
+ @param {HTMLElement} element
+ */
+export const splitTextIntoSpans = (element) => {
+  const text = element.textContent;
+  const splitText = text.split("");
+  const wrappedText = splitText
+    .map((letter) =>
+      letter === " "
+        ? `<span style="opacity: 0; display: inline-block; width: 0.3em;">&nbsp;</span>`
+        : `<span style="opacity: 0; display: inline-block;">${letter}</span>`
+    )
+    .join("");
+
+  element.innerHTML = wrappedText;
+};
+
+/**
+ @param {HTMLElement} element
+ */
+export const fadeInTextLetterByLetter = (element) => {
+  splitTextIntoSpans(element);
+
+  const letters = element.querySelectorAll("span");
+
+  gsap.fromTo(
+    letters,
+    {
+      opacity: 0,
+      y: 25,
+    },
+    {
+      opacity: 1,
+      y: 0,
+      stagger: 0.05,
+      duration: 0.5,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: element,
+        start: "top 80%",
+        end: "bottom 20%",
+        toggleActions: "play reverse play reverse",
+        onLeaveBack: () => ScrollTrigger.refresh(),
+      },
+    }
+  );
 };

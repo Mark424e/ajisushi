@@ -1,15 +1,32 @@
-import React from "react";
+import React, { useState, useCallback } from "react";
 
 export const Button = ({
-  onClick, // Function to handle button click
-  children, // Text or elements inside the button
-  type = "button", // Type of button (e.g. 'button', 'submit', 'reset')
-  disabled = false, // Whether the button is disabled
+  onClick,
+  children,
+  type = "button",
+  disabled = false,
 }) => {
+  const [isBouncing, setIsBouncing] = useState(false);
+
+  const handleClick = useCallback((event) => {
+    if (isBouncing) return;
+
+    setIsBouncing(true);
+    
+    const animationDuration = 200;
+    setTimeout(() => {
+      setIsBouncing(false);
+    }, animationDuration);
+
+    if (onClick) {
+      onClick(event);
+    }
+  }, [isBouncing, onClick]);
   return (
-    <button className="w-full mt-6 text-secondary p-2 rounded transition relative inline-block px-6 py-2 font-medium border-2 border-secondary group hover:text-white duration-300"
-      type={type} 
-      onClick={onClick} 
+    <button
+      className={`w-full mt-6 text-secondary p-2 rounded transition relative inline-block px-6 py-2 font-medium border-2 border-secondary group hover:text-white duration-300 ${isBouncing ? 'bounce' : ''}`}
+      type={type}
+      onClick={handleClick}
       disabled={disabled}
     >
       <span className="relative z-10">{children}</span>

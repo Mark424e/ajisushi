@@ -9,18 +9,24 @@ import {
   animateImagePosition,
   setupParallaxEffect,
   setupFadeInEffect,
+  bounceFadeInFromLeft,
+  fadeInTextLetterByLetter,
 } from "./utils/gsapUtils";
 
 export default function Home() {
   const imagePosRef = useRef(null);
   const imageNegRef = useRef(null);
   const imageParallaxRef = useRef(null);
+  const bounceElementRef = useRef(null);
+  const headingRef = useRef(null);
 
   useGSAP(() => {
     // Initialize GSAP animations
     animateImagePosition(imagePosRef, imageNegRef);
     setupParallaxEffect(imageParallaxRef);
     setupFadeInEffect();
+    bounceFadeInFromLeft(bounceElementRef.current);
+    fadeInTextLetterByLetter(headingRef.current);
   }, []);
 
   return (
@@ -40,7 +46,7 @@ export default function Home() {
           </div>
           <div className="absolute w-full bottom-0 h-full bg-gradient-to-t from-background via-background/25 to-transparent"></div>
           <div className="relative h-full flex flex-col items-center justify-center">
-            <h1 className="fade-in mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
+            <h1 ref={headingRef} className="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
               Velkommen til Aji sushi
             </h1>
           </div>
@@ -98,7 +104,7 @@ export default function Home() {
         <div className="bg-background py-10 md:py-20">
           <div className="container mx-auto">
             <div className="grid md:grid-cols-2 items-center text-center md:text-start leading-7 gap-8">
-              <div className="relative h-80 overflow-hidden order-2 md:order-1">
+              <div ref={bounceElementRef} className="relative h-80 overflow-hidden order-2 md:order-1">
                 <Image
                   ref={imageParallaxRef}
                   className="absolute top-0 left-0 w-full h-[175%] object-cover"
