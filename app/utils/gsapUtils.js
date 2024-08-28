@@ -1,7 +1,8 @@
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
 // Animation for moving images up or down
 export const animateImagePosition = (imagePosRef, imageNegRef) => {
@@ -91,7 +92,7 @@ export const bounceFadeInFromLeft = (element) => {
 };
 
 /**
- @param {HTMLElement} element
+ * @param {HTMLElement} element
  */
 export const splitTextIntoSpans = (element) => {
   const text = element.textContent;
@@ -108,7 +109,7 @@ export const splitTextIntoSpans = (element) => {
 };
 
 /**
- @param {HTMLElement} element
+ * @param {HTMLElement} element
  */
 export const fadeInTextLetterByLetter = (element) => {
   splitTextIntoSpans(element);
@@ -136,4 +137,21 @@ export const fadeInTextLetterByLetter = (element) => {
       },
     }
   );
+};
+
+/**
+ * @param {HTMLElement} button
+ * @param {HTMLElement} targetSection
+ */
+export const scrollToSection = (button, targetSection) => {
+  button.addEventListener("click", () => {
+    gsap.to(window, {
+      duration: 1.5, // Duration of the scroll
+      scrollTo: {
+        y: targetSection, // Scroll to the target section
+        offsetY: 60, // Adjust offset if needed
+      },
+      ease: "power2.inOut", // Easing function
+    });
+  });
 };

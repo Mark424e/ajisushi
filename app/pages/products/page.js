@@ -23,7 +23,7 @@ export default function Products() {
           <div className="-z-10">
             <Image
               priority
-              src={"/hero.webp"}
+              src={"/8t4.webp"}
               layout="fill"
               objectFit="cover"
               objectPosition="center"

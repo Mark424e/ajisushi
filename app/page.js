@@ -11,6 +11,7 @@ import {
   setupFadeInEffect,
   bounceFadeInFromLeft,
   fadeInTextLetterByLetter,
+  scrollToSection,
 } from "./utils/gsapUtils";
 
 export default function Home() {
@@ -19,6 +20,8 @@ export default function Home() {
   const imageParallaxRef = useRef(null);
   const bounceElementRef = useRef(null);
   const headingRef = useRef(null);
+  const buttonRef = useRef(null);
+  const nextSectionRef = useRef(null);
 
   useGSAP(() => {
     // Initialize GSAP animations
@@ -27,6 +30,7 @@ export default function Home() {
     setupFadeInEffect();
     bounceFadeInFromLeft(bounceElementRef.current);
     fadeInTextLetterByLetter(headingRef.current);
+    scrollToSection(buttonRef.current, nextSectionRef.current);
   }, []);
 
   return (
@@ -46,14 +50,40 @@ export default function Home() {
           </div>
           <div className="absolute w-full bottom-0 h-full bg-gradient-to-t from-background via-background/25 to-transparent"></div>
           <div className="relative h-full flex flex-col items-center justify-center">
-            <h1 ref={headingRef} className="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
-              Velkommen til Aji sushi
-            </h1>
+            <div className="relative flex flex-col items-center">
+              <h1
+                ref={headingRef}
+                className="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-text text-center"
+              >
+                Velkommen til Aji sushi
+              </h1>
+
+              <div className="mt-12">
+                <button
+                  ref={buttonRef}
+                  className="scroll-arrow bg-transparent border-none cursor-pointer inline-block"
+                  aria-label="Scroll down"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width={30}
+                    height={30}
+                    viewBox="0 0 448 512"
+                    className="fade-in text-text"
+                  >
+                    <path
+                      fill="#f0ecec"
+                      d="M201.4 374.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 306.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      <section>
+      <section ref={nextSectionRef}>
         <div className="bg-background py-10 md:py-20">
           <div className="container mx-auto">
             <div className="grid md:grid-cols-2 items-center text-center md:text-start leading-7 gap-8">
@@ -104,7 +134,10 @@ export default function Home() {
         <div className="bg-background py-10 md:py-20">
           <div className="container mx-auto">
             <div className="grid md:grid-cols-2 items-center text-center md:text-start leading-7 gap-8">
-              <div ref={bounceElementRef} className="relative h-80 overflow-hidden order-2 md:order-1">
+              <div
+                ref={bounceElementRef}
+                className="relative h-80 overflow-hidden order-2 md:order-1"
+              >
                 <Image
                   ref={imageParallaxRef}
                   className="absolute top-0 left-0 w-full h-[175%] object-cover"

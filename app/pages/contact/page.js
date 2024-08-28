@@ -23,7 +23,7 @@ export default function Contact() {
           <div className="-z-10">
             <Image
               priority
-              src={"/hero.webp"}
+              src={"/1wh.webp"}
               layout="fill"
               objectFit="cover"
               objectPosition="center"

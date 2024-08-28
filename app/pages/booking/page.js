@@ -65,7 +65,7 @@ export default function Booking() {
           <div className="-z-10">
             <Image
               priority
-              src={"/hero.webp"}
+              src={"/4b4.webp"}
               layout="fill"
               objectFit="cover"
               objectPosition="center"

@@ -63,7 +63,7 @@ export const Header = () => {
         </div>
 
         {/* Navmenu */}
-        <div
+        <nav
           className={`bg-gradient-to-b from-black via-black/75 to-transparent transition-transform duration-500 ${
             isSticky ? "fixed top-0 left-0 w-full" : ""
           }`}
@@ -77,6 +77,9 @@ export const Header = () => {
             >
               <div className="container mx-auto py-20">
                 <ul className="nav-menu flex flex-col items-center gap-5">
+                  <li>
+                    <Link href="/">Hjem</Link>
+                  </li>
                   <li>
                     <Link href="/pages/booking">Booking</Link>
                   </li>
@@ -129,6 +132,9 @@ export const Header = () => {
               <div className="hidden md:flex">
                 <ul className="nav-menu flex gap-10">
                   <li>
+                    <Link href="/">Hjem</Link>
+                  </li>
+                  <li>
                     <Link href="/pages/booking">Booking</Link>
                   </li>
                   <li>
@@ -144,7 +150,7 @@ export const Header = () => {
               </div>
             </div>
           </div>
-        </div>
+        </nav>
       </div>
     </header>
   );
